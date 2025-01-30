@@ -1,0 +1,126 @@
+<experiment>
+<process algorithm-type="net.sf.jclec.sbse.cl2cmp.mo.algorithms.Cl2CmpMoAlgorithm">
+		
+		<mo-evol-strategy multi="true">
+			<mo-evol-strategy type="net.sf.jclec.mo.strategies.constrained.ConstrainedGrEA">
+				<div>12</div>
+			</mo-evol-strategy>
+			
+			<mo-evol-strategy type="net.sf.jclec.mo.strategies.constrained.ConstrainedHypE" >
+				<sampling-size>10000</sampling-size>
+			</mo-evol-strategy>
+			
+			<mo-evol-strategy type="net.sf.jclec.mo.strategies.constrained.ConstrainedIBEAe" >
+				<k>0.05</k>
+			</mo-evol-strategy>
+			
+			<mo-evol-strategy type="net.sf.jclec.mo.strategies.constrained.ConstrainedMOEAD">
+				<t>8</t>
+				<nr>2</nr>
+				<h>4</h>
+			</mo-evol-strategy>	
+		
+			<mo-evol-strategy type="net.sf.jclec.mo.strategies.constrained.ConstrainedNSGA2" />
+		
+			<mo-evol-strategy type="net.sf.jclec.mo.strategies.SPEA2">
+				<parents-selector type="net.sf.jclec.selector.TournamentSelector">
+					<tournament-size>2</tournament-size>
+				</parents-selector>
+				<external-population-size>50</external-population-size>
+				<k-value>2</k-value>
+			</mo-evol-strategy>
+		
+			<mo-evol-strategy type="net.sf.jclec.mo.strategies.constrained.ConstrainedSSeMOEA">
+				<epsilon-values>
+					<epsilon-value>0.05</epsilon-value> <!-- Abs -->
+					<epsilon-value>0.05</epsilon-value> <!-- CB -->
+					<!-- <epsilon-value>0.05</epsilon-value>--> <!-- IB -->
+					<epsilon-value>1</epsilon-value> <!-- CL -->
+					<epsilon-value>1</epsilon-value> <!-- CS -->
+					<epsilon-value>0.05</epsilon-value> <!-- Enc -->
+					<epsilon-value>5</epsilon-value> <!-- ERP -->
+					<epsilon-value>0.1</epsilon-value> <!-- GCR -->
+					<epsilon-value>0.25</epsilon-value> <!-- ICD -->
+					<epsilon-value>0.05</epsilon-value> <!-- Inst -->
+					</epsilon-values>
+			</mo-evol-strategy>
+		
+		</mo-evol-strategy>
+		
+		<rand-gen-factory multi="true">
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="123456789"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="234567891"/>
+		</rand-gen-factory>
+		<population-size>495</population-size>
+		<max-of-evaluations>4950</max-of-evaluations>
+
+		<species type="net.sf.jclec.sbse.cl2cmp.mo.Cl2CmpMoSpecies"/>
+		<provider type="net.sf.jclec.sbse.cl2cmp.Cl2CmpTreeCreator"/>
+		<min-of-components>2</min-of-components>
+		<max-of-components>8</max-of-components>
+		
+		<model multi="true">
+			<model>
+				<num-of-classes>59</num-of-classes>
+				<relations>data/datapro4j.csv</relations>
+				<classes>data/datapro4j-classes.csv</classes>
+			</model>
+				
+			<model>
+				<num-of-classes>32</num-of-classes>
+				<relations>data/marvin.csv</relations>
+				<classes>data/marvin-classes.csv</classes>
+			</model>
+		</model>
+		
+		<evaluator type="net.sf.jclec.sbse.cl2cmp.mo.Cl2CmpMoEvaluator">
+			<objectives>	 
+				<objective type="net.sf.jclec.sbse.cl2cmp.mo.objectives.Abstractness" maximize="true" />
+				<objective type="net.sf.jclec.sbse.cl2cmp.mo.objectives.ComponentBalance" maximize="true" />
+				<!--<objective type="net.sf.jclec.sbse.cl2cmp.mo.objectives.InterfaceBalance" maximize="true" />-->
+				<objective type="net.sf.jclec.sbse.cl2cmp.mo.objectives.InvCritLink" maximize="true">
+					<link-threshold>8</link-threshold>
+				</objective>
+				<objective type="net.sf.jclec.sbse.cl2cmp.mo.objectives.InvCritSize" maximize="true">
+					<size-threshold>0.3</size-threshold>
+				</objective>
+				<objective type="net.sf.jclec.sbse.cl2cmp.mo.objectives.Encapsulation" maximize="true" />
+				<objective type="net.sf.jclec.sbse.cl2cmp.mo.objectives.InvERP"  maximize="true">
+					<assoc-weight>1.0</assoc-weight>
+					<aggreg-weight>2.0</aggreg-weight>
+					<compos-weight>3.0</compos-weight>
+					<gener-weight>5.0</gener-weight>
+				</objective>
+				<objective type="net.sf.jclec.sbse.cl2cmp.mo.objectives.InvGCR" maximize="true" />
+				<objective type="net.sf.jclec.sbse.cl2cmp.mo.objectives.ICD" maximize="true" />
+				<objective type="net.sf.jclec.sbse.cl2cmp.mo.objectives.InvInstability" maximize="true" />
+			</objectives>
+		</evaluator>
+		
+		<base-mutator type="net.sf.jclec.sbse.cl2cmp.Cl2CmpMutator" probability-invalids="true">
+			<mutator type="net.sf.jclec.sbse.cl2cmp.mut.AddComponentMutator" weight="0.2" random="false"/>
+			<mutator type="net.sf.jclec.sbse.cl2cmp.mut.RemoveComponentMutator" weight="0.3" random="false" />
+			<mutator type="net.sf.jclec.sbse.cl2cmp.mut.MergeComponentsMutator" weight="0.2" random="false"/>
+		 	<mutator type="net.sf.jclec.sbse.cl2cmp.mut.AddInterfaceMutator" weight="0.1" random="false"/>
+			<mutator type="net.sf.jclec.sbse.cl2cmp.mut.MoveClassMutator" weight="0.2" random="true"/>
+		</base-mutator>
+		
+		<!-- Listeners -->
+		<listener type="net.sf.jclec.sbse.cl2cmp.mo.listener.IndividualsFileReporter" />
+		
+		<listener type="net.sf.jclec.sbse.cl2cmp.mo.listener.IndividualsFrontExcelReporter" />
+		
+		<listener type="net.sf.jclec.sbse.cl2cmp.mo.listener.ParetoReporter">
+			<number-of-executions>1</number-of-executions>
+		</listener>
+		
+		<listener type="net.sf.jclec.sbse.cl2cmp.mo.listener.PopulationReporter">
+			<number-of-executions>1</number-of-executions>
+		</listener>
+		
+		<listener type="net.sf.jclec.sbse.cl2cmp.mo.listener.EvolutionReporter">
+			<report-frequency>1</report-frequency>
+		</listener>
+
+	</process>
+</experiment>

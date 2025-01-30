@@ -1,0 +1,31 @@
+<experiment>
+	<process algorithm-type="net.sf.jclec.mo.algorithms.MOEAlgorithm">
+		
+		<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="123456789"/>
+		<mo-evol-strategy type="net.sf.jclec.mo.strategies.IBEAe" >
+			<k>0.05</k>
+		</mo-evol-strategy>
+		
+		<population-size>100</population-size>
+		<max-of-generations>10</max-of-generations>
+
+		<species type="net.sf.jclec.binarray.BinArrayIndividualSpecies" genotype-length="10"/>
+		<provider type="net.sf.jclec.binarray.BinArrayCreator"/>
+				
+		<evaluator type="net.sf.jclec.mo.MOEvaluator">
+			<objectives>	 
+				<objective type="net.sf.jclec.mo.test.MyObjective1" left="0" right="1" clousure="closed-closed" maximize="true" />
+				<objective type="net.sf.jclec.mo.test.MyObjective2" left="0" right="1" clousure="closed-closed" maximize="true" />
+			</objectives>
+		</evaluator>
+		
+		<recombinator type="net.sf.jclec.binarray.rec.UniformCrossover" rec-prob="0.75" />
+		<mutator type="net.sf.jclec.binarray.mut.OneLocusMutator" mut-prob="0.1" />
+		
+		<!-- Listeners -->
+		<listener type="net.sf.jclec.mo.listener.MOPopulationReporter">
+			<report-frequency>1</report-frequency>
+		</listener>
+
+	</process>
+</experiment>

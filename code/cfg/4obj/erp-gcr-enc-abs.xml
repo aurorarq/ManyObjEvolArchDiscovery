@@ -1,0 +1,153 @@
+<experiment>
+<process algorithm-type="net.sf.jclec.sbse.cl2cmp.mo.algorithms.Cl2CmpMoAlgorithm">
+		
+		<rand-gen-factory multi="true">
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="123456789"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="234567891"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="345678912"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="456789123"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="567891234"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="678912345"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="789123456"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="891234567"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="912345678"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="987654321"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="876543219"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="765432198"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="654321987"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="543219876"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="432198765"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="321987654"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="219876543"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="192837465"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="283746519"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="374651928"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="465192837"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="519283746"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="827364591"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="736459182"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="645918273"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="283917465"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="791263485"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="849316257"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="362814795"/>
+			<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="421938567"/>
+		</rand-gen-factory>
+		
+		<species type="net.sf.jclec.sbse.cl2cmp.mo.Cl2CmpMoSpecies"/>
+		<provider type="net.sf.jclec.sbse.cl2cmp.Cl2CmpTreeCreator"/>
+		<min-of-components>2</min-of-components>
+		<max-of-components>8</max-of-components>
+		
+		<model multi="true">
+				
+			<model>
+				<num-of-classes>58</num-of-classes>
+				<relations>data/aqualush.csv</relations>
+				<classes>data/aqualush-classes.csv</classes>
+			</model>
+				
+			<model>
+				<num-of-classes>167</num-of-classes>
+				<relations>data/borg.csv</relations>
+				<classes>data/borg-classes.csv</classes>
+			</model>
+				
+			<model>
+				<num-of-classes>59</num-of-classes>
+				<relations>data/datapro4j.csv</relations>
+				<classes>data/datapro4j-classes.csv</classes>
+			</model>
+				
+			<model>
+				<num-of-classes>190</num-of-classes>
+				<relations>data/ical4j.csv</relations>
+				<classes>data/ical4j-classes.csv</classes>
+			</model>
+				
+			<model>
+				<num-of-classes>53</num-of-classes>
+				<relations>data/java2html.csv</relations>
+				<classes>data/java2html-classes.csv</classes>
+			</model>
+				
+			<model>
+				<num-of-classes>46</num-of-classes>
+				<relations>data/jsapar.csv</relations>
+				<classes>data/jsapar-classes.csv</classes>
+			</model>
+				
+			<model>
+				<num-of-classes>96</num-of-classes>
+				<relations>data/jxls.csv</relations>
+				<classes>data/jxls-classes.csv</classes>
+			</model>
+				
+			<model>
+				<num-of-classes>253</num-of-classes>
+				<relations>data/logisim.csv</relations>
+				<classes>data/logisim-classes.csv</classes>
+			</model>
+			
+			<model>
+				<num-of-classes>32</num-of-classes>
+				<relations>data/marvin.csv</relations>
+				<classes>data/marvin-classes.csv</classes>
+			</model>
+			
+			<model>
+				<num-of-classes>47</num-of-classes>
+				<relations>data/nekohtml.csv</relations>
+				<classes>data/nekohtml-classes.csv</classes>
+			</model>
+		</model>
+		
+		<base-mutator type="net.sf.jclec.sbse.cl2cmp.Cl2CmpMutator" probability-invalids="true">
+			<mutator type="net.sf.jclec.sbse.cl2cmp.mut.AddComponentMutator" weight="0.2" random="false"/>
+			<mutator type="net.sf.jclec.sbse.cl2cmp.mut.RemoveComponentMutator" weight="0.3" random="false" />
+			<mutator type="net.sf.jclec.sbse.cl2cmp.mut.MergeComponentsMutator" weight="0.2" random="false"/>
+		 	<mutator type="net.sf.jclec.sbse.cl2cmp.mut.AddInterfaceMutator" weight="0.1" random="false"/>
+			<mutator type="net.sf.jclec.sbse.cl2cmp.mut.MoveClassMutator" weight="0.2" random="true"/>
+		</base-mutator>
+		
+		<!-- Listeners -->
+		<listener type="net.sf.jclec.sbse.cl2cmp.mo.listener.IndividualsFileReporter" />
+		
+		<listener type="net.sf.jclec.sbse.cl2cmp.mo.listener.IndividualsFrontExcelReporter" />
+		
+		<listener type="net.sf.jclec.sbse.cl2cmp.mo.listener.ParetoReporter">
+			<number-of-executions>30</number-of-executions>
+		</listener>
+		
+		<listener type="net.sf.jclec.sbse.cl2cmp.mo.listener.PopulationReporter">
+			<number-of-executions>30</number-of-executions>
+		</listener>
+		
+		<listener type="net.sf.jclec.sbse.cl2cmp.mo.listener.EvolutionReporter">
+			<report-frequency>100</report-frequency>
+		</listener>
+		
+		<mo-evol-strategy type="net.sf.jclec.mo.strategies.constrained.ConstrainedNSGA3">
+			<user-points>false</user-points>
+			<p1>3</p1>
+			<p2>2</p2>
+		</mo-evol-strategy>
+		
+		<evaluator type="net.sf.jclec.sbse.cl2cmp.mo.Cl2CmpMoEvaluator">
+
+			<objectives>
+				<objective type="net.sf.jclec.sbse.cl2cmp.mo.objectives.InvERP"  maximize="true">
+<assoc-weight>1.0</assoc-weight>
+<aggreg-weight>2.0</aggreg-weight>
+<compos-weight>3.0</compos-weight>
+<gener-weight>5.0</gener-weight>
+</objective>
+				<objective type="net.sf.jclec.sbse.cl2cmp.mo.objectives.InvGCR" maximize="true"/>
+				<objective type="net.sf.jclec.sbse.cl2cmp.mo.objectives.Encapsulation" maximize="true"/>
+				<objective type="net.sf.jclec.sbse.cl2cmp.mo.objectives.InterfaceBalance" maximize="true"/>
+			</objectives>
+		</evaluator>
+		<population-size>120</population-size>
+		<max-of-evaluations>15000</max-of-evaluations>
+	</process>
+</experiment>
